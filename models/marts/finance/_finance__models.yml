@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: fct_daily_revenue
+    description: "{{ doc('fct_daily_revenue_grain') }}"
+
+    columns:
+      - name: order_id
+        description: "Primary key representing one order."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "Customer who placed the order."
+        data_tests:
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_id
+
+      - name: revenue_usd
+        description: "Total payment revenue for the order in US dollars."
+        data_tests:
+          - non_negative
+
+  - name: payment_method_summary
+    description: >
+      Payment-method pivot model containing one row per order and one
+      aggregated amount column for each configured payment method.

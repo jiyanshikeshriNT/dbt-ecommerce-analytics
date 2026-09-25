@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Cleaned staging model for customer data."
+    columns:
+      - name: customer_id
+        description: "Primary key of the customer."
+        data_tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    description: "Cleaned staging model for order data."
+    columns:
+      - name: order_id
+        description: "Primary key of the order."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: status
+        description: "Current order status."
+        data_tests:
+          - accepted_values:
+              values: ['placed', 'shipped', 'delivered', 'cancelled', 'refunded']
+              config:
+                # Unexpected status values are initially warnings so that newly observed business statuses do not block the pipeline
+                severity: warn
+                warn_if: ">0"
+
+  - name: stg_payments
+    description: "Cleaned staging model for payment data."
+    columns:
+      - name: payment_id
+        description: "Primary key of the payment."
+        data_tests:
+          - unique
+          - not_null

@@ -1,0 +1,18 @@
+version: 2
+
+exposures:
+  - name: executive_revenue_dashboard
+    label: "Executive Revenue Dashboard"
+    type: dashboard
+    maturity: high
+
+    description: >
+      Executive dashboard used to monitor order-level revenue
+      generated from the fct_daily_revenue model.
+
+    depends_on:
+      - ref('fct_daily_revenue')
+
+    owner:
+      name: "Analytics Team"
+      email: "analytics-team@example.com"

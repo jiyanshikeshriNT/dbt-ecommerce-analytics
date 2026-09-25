@@ -1,0 +1,12 @@
+version: 2
+
+snapshots:
+  - name: snap_customers
+    description: >
+      This snapshot preserves historical versions of customer records.
+      The timestamp strategy is used because raw_customers provides a reliable
+      updated_at column that changes whenever a customer record is modified.
+      Therefore dbt can detect changes efficiently by comparing timestamps
+      instead of comparing every source column with the check strategy.
+      Hard deletes are invalidated so deleted customers do not remain
+      incorrectly marked as active.

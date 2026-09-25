@@ -1,0 +1,21 @@
+# Python virtual environment
+dbt-env/
+.venv/
+venv/
+
+# dbt generated folders
+target/
+logs/
+dbt_packages/
+
+# Credentials / environment files
+.env
+profiles.yml
+
+# Python
+__pycache__/
+*.pyc
+
+# OS / IDE
+.DS_Store
+.vscode/

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: int_orders_joined_payments
+    description: >
+      Ephemeral intermediate model that joins staged orders with payments
+      and calculates total revenue per order before the data is consumed
+      by downstream marts.
