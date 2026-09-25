@@ -361,26 +361,3 @@ dbt build --select state:modified+ --defer --state state_prod
 The command output should be reviewed to confirm that only the modified model and its downstream dependencies were executed rather than the complete dbt DAG.
 
 ---
-
-## Final Validation
-
-Before submission, the project should successfully complete:
-
-```bash
-dbt debug
-dbt source freshness
-dbt build --full-refresh
-dbt test
-dbt docs generate
-```
-
-The final project should have:
-
-- Zero build errors
-- Passing tests against clean data
-- Working source freshness checks
-- Complete documentation and lineage
-- Working snapshot history
-- Working marts post-hook
-- Saved Slim CI reference manifest
-- Successful `state:modified+` and `--defer` execution
